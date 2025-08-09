@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excellence University - Where Dreams Take Flight</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: -1;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"><animate attributeName="cx" values="200;800;200" dur="20s" repeatCount="indefinite"/></circle><circle cx="800" cy="300" r="150" fill="url(%23a)"><animate attributeName="cy" values="300;700;300" dur="25s" repeatCount="indefinite"/></circle><circle cx="400" cy="600" r="120" fill="url(%23a)"><animate attributeName="cx" values="400;600;400" dur="18s" repeatCount="indefinite"/></circle></svg>') center/cover;
+            animation: float 30s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(-40px) rotate(240deg); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 5px 25px rgba(255,255,255,0.3);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, #f8f9ff, #e8f0ff);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .about-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Programs Section */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .program-header {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .program-content {
+            padding: 2rem;
+        }
+
+        .program-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            animation: countUp 2s ease-out;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            height: 150px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 5% 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section {
+                padding: 3rem 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <header>
+        <nav>
+            <a href="#" class="logo">🎓 Excellence University</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#admissions">Admissions</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Shape Your Future</h1>
+            <p>Join Excellence University, where innovation meets tradition and dreams become reality. Discover world-class education, cutting-edge research, and a vibrant campus community.</p>
+            <div class="cta-buttons">
+                <a href="#programs" class="cta-btn cta-primary">Explore Programs</a>
+                <a href="#admissions" class="cta-btn cta-secondary">Apply Now</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="section" id="about">
+            <h2 class="section-title fade-in">About Excellence University</h2>
+            <div class="about-grid">
+                <div class="about-card fade-in">
+                    <div class="about-icon">🌟</div>
+                    <h3>Academic Excellence</h3>
+                    <p>Ranked among the top 50 universities globally, we offer world-class education with innovative teaching methods and cutting-edge research opportunities.</p>
+                </div>
+                <div class="about-card fade-in">
+                    <div class="about-icon">🌍</div>
+                    <h3>Global Community</h3>
+                    <p>Join a diverse community of students from over 80 countries, fostering cultural exchange and global perspectives in everything we do.</p>
+                </div>
+                <div class="about-card fade-in">
+                    <div class="about-icon">🔬</div>
+                    <h3>Research Innovation</h3>
+                    <p>Our state-of-the-art facilities and renowned faculty lead groundbreaking research that shapes the future of science, technology, and society.</p>
+                </div>
+                <div class="about-card fade-in">
+                    <div class="about-icon">💼</div>
+                    <h3>Career Success</h3>
+                    <p>95% of our graduates find employment within 6 months, thanks to our strong industry partnerships and comprehensive career services.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section stats">
+            <h2 class="section-title">University by Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-number">25,000+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number">1,200+</div>
+                    <div class="stat-label">Faculty Members</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Academic Programs</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number">80+</div>
+                    <div class="stat-label">Countries Represented</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="programs">
+            <h2 class="section-title fade-in">Academic Programs</h2>
+            <div class="programs-grid">
+                <div class="program-card fade-in">
+                    <div class="program-header">💻</div>
+                    <div class="program-content">
+                        <h3 class="program-title">Computer Science & Engineering</h3>
+                        <p>Cutting-edge programs in AI, machine learning, cybersecurity, and software engineering. Our graduates lead tech innovation worldwide.</p>
+                        <ul style="margin-top: 1rem; color: #666;">
+                            <li>Artificial Intelligence & Machine Learning</li>
+                            <li>Cybersecurity & Digital Forensics</li>
+                            <li>Software Engineering & Development</li>
+                            <li>Data Science & Analytics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card fade-in">
+                    <div class="program-header">🧬</div>
+                    <div class="program-content">
+                        <h3 class="program-title">Life Sciences & Medicine</h3>
+                        <p>World-renowned medical and life sciences programs with state-of-the-art research facilities and clinical partnerships.</p>
+                        <ul style="margin-top: 1rem; color: #666;">
+                            <li>Medicine & Surgery</li>
+                            <li>Biomedical Engineering</li>
+                            <li>Pharmaceutical Sciences</li>
+                            <li>Molecular Biology & Genetics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card fade-in">
+                    <div class="program-header">💼</div>
+                    <div class="program-content">
+                        <h3 class="program-title">Business & Management</h3>
+                        <p>Comprehensive business education with real-world applications, entrepreneurship focus, and global industry connections.</p>
+                        <ul style="margin-top: 1rem; color: #666;">
+                            <li>MBA & Executive Programs</li>
+                            <li>International Business</li>
+                            <li>Finance & Investment</li>
+                            <li>Digital Marketing & E-commerce</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card fade-in">
+                    <div class="program-header">🎨</div>
+                    <div class="program-content">
+                        <h3 class="program-title">Arts & Humanities</h3>
+                        <p>Creative and critical thinking programs that explore human culture, expression, and the complexities of modern society.</p>
+                        <ul style="margin-top: 1rem; color: #666;">
+                            <li>Digital Media & Design</li>
+                            <li>Literature & Creative Writing</li>
+                            <li>History & Cultural Studies</li>
+                            <li>Philosophy & Ethics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="news">
+            <h2 class="section-title fade-in">Latest News & Events</h2>
+            <div class="news-grid">
+                <div class="news-card fade-in">
+                    <div class="news-image">🏆</div>
+                    <div class="news-content">
+                        <div class="news-date">August 5, 2025</div>
+                        <h3 class="news-title">Excellence University Ranks #1 in Innovation</h3>
+                        <p>Our university has been recognized as the most innovative institution in the region for the third consecutive year, highlighting our commitment to cutting-edge research.</p>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-image">🔬</div>
+                    <div class="news-content">
+                        <div class="news-date">August 3, 2025</div>
+                        <h3 class="news-title">Breakthrough in Quantum Computing Research</h3>
+                        <p>Our Physics department has achieved a major milestone in quantum computing, potentially revolutionizing the future of technology and computation.</p>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-image">🌱</div>
+                    <div class="news-content">
+                        <div class="news-date">August 1, 2025</div>
+                        <h3 class="news-title">New Sustainability Initiative Launched</h3>
+                        <p>Campus-wide sustainability program aims to achieve carbon neutrality by 2030, making us a leader in environmental responsibility among universities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="admissions">
+            <h2 class="section-title fade-in">Join Our Community</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #666;">
+                    Ready to start your journey at Excellence University? Our admissions team is here to guide you through every step of the application process.
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                    <div style="background: #f8f9ff; padding: 2rem; border-radius: 15px;">
+                        <h4 style="color: #667eea; margin-bottom: 1rem;">Undergraduate Programs</h4>
+                        <p>Application deadline: March 15, 2026</p>
+                        <p>Start your bachelor's degree journey</p>
+                    </div>
+                    <div style="background: #f8f9ff; padding: 2rem; border-radius: 15px;">
+                        <h4 style="color: #667eea; margin-bottom: 1rem;">Graduate Programs</h4>
+                        <p>Rolling admissions available</p>
+                        <p>Advance your career with master's & PhD programs</p>
+                    </div>
+                </div>
+                <a href="#" class="cta-btn cta-primary" style="margin-top: 1rem;">Start Your Application</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>📍 123 University Avenue<br>Academic City, AC 12345</p>
+                <p>📞 +1 (555) 123-4567</p>
+                <p>✉️ info@excellence-university.edu</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#admissions">Admissions</a>
+                <a href="#programs">Academic Programs</a>
+                <a href="#">Student Services</a>
+                <a href="#">Library</a>
+                <a href="#">Campus Life</a>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <a href="#">Student Portal</a>
+                <a href="#">Faculty Directory</a>
+                <a href="#">Research Centers</a>
+                <a href="#">Alumni Network</a>
+                <a href="#">Career Services</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Excellence University. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 30px rgba(0,0,0,0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 30px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Logout function
+        function handleLogout() {
+            if (confirm('Are you sure you want to logout?')) {
+                // Add your logout logic here
+                alert('Logging out... Thank you for visiting Excellence University!');
+                // window.location.href = '/login';
+            }
+        }
+
+        // Add some interactive elements
+        document.querySelectorAll('.program-card, .news-card, .about-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animate numbers in stats section
+        function animateNumbers() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const targets = ['25,000+', '1,200+', '150+', '80+'];
+            
+            statNumbers.forEach((num, index) => {
+                let current = 0;
+                const target = parseInt(targets[index].replace(/[^\d]/g, ''));
+                const increment = target / 100;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        num.textContent = targets[index];
+                        clearInterval(timer);
+                    } else {
+                        num.textContent = Math.floor(current).toLocaleString() + (targets[index].includes('+') ? '+' : '');
+                    }
+                }, 20);
+            });
+        }
+
+        // Trigger number animation when stats section is visible
+        const statsSection = document.querySelector('.stats');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumbers();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function typing() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing, speed);
+                }
+            }
+            typing();
+        }
+
+        // Initialize typing effect after page load
+        window.addEventListener('load', () => {
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.textContent;
+            typeWriter(heroTitle, originalText, 150);
+        });
+    </script>
+</body>
+</html>
